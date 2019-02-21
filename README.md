@@ -84,3 +84,4 @@ Permission.openCamera((result) => {
 ```
 
   
+测试
