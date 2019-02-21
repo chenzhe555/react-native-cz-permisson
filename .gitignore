@@ -1,2 +1,15 @@
 .idea
 node_modules
+
+#android
+.idea
+android/.idea/*
+build
+!android/.idea/copyright
+.expo/
+.gradle
+local.properties
+*.iml
+.idea/workspace.xml
+.project
+.classpath
