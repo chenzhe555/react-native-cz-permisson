@@ -82,6 +82,3 @@ Permission.openCamera((result) => {
         
 });
 ```
-
-  
-测试 222
