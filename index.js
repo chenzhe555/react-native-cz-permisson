@@ -49,8 +49,8 @@ export default class CZPermission {
     * callback(result, type) result: 1.是, 2否; type: 1.未弹出授权页 2.该App不能使用相机 3.用户拒绝访问相机 4.用户允许访问相机
     * */
     static checkCamera = (callback) => {
-        RNCzPermission.CheckCamera( (result) => {
-            callback(result);
+        RNCzPermission.CheckCamera( (result, type) => {
+            callback(result, type);
         });
     }
 
