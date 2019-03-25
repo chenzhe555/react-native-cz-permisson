@@ -14,10 +14,9 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.facebook.react.bridge.Callback;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import java.util.List;
 
 public class Utils {
 
@@ -35,18 +34,26 @@ public class Utils {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Disposable disposable = new RxPermissions(activity)
-                        .request(permission)
-                        .subscribe(new Consumer<Boolean>() {
+                AndPermission.with(activity)
+                        .runtime()
+                        .permission(permission)
+                        .onGranted(new Action<List<String>>() {
                             @Override
-                            public void accept(Boolean isAllowed) throws Exception {
-                                if (isAllowed) {
+                            public void onAction(List<String> data) {
+                                if(callback != null){
                                     callback.invoke(1);
-                                } else {
+                                }
+                            }
+                        })
+                        .onDenied(new Action<List<String>>() {
+                            @Override
+                            public void onAction(List<String> data) {
+                                if(callback != null){
                                     callback.invoke(2);
                                 }
                             }
-                        });
+                        })
+                        .start();
             }
         });
 
