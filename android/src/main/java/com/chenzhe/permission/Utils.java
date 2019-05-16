@@ -21,6 +21,8 @@ import java.util.List;
 public class Utils {
 
     public static final String PERMISSION_CAMERA = Manifest.permission.CAMERA;
+    public static final  String PERMISSION_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    public static final String  PERMISSION_ACROSS_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
 
 
     /**
@@ -150,6 +152,15 @@ public class Utils {
     public static void openNetwork(Context context) {
         Intent intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
         context.startActivity(intent);
+    }
+
+    /**
+     * 检查是否有定位权限
+     * @param activity
+     * @return
+     */
+    public static boolean hasLocationPermission(Activity activity){
+     return    checkPermission(activity,PERMISSION_FINE_LOCATION);
     }
 
 }

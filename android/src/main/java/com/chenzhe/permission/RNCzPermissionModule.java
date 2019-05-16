@@ -79,4 +79,22 @@ public class RNCzPermissionModule extends ReactContextBaseJavaModule {
         if (getCurrentActivity() == null) return;
         Utils.requestPermission(getCurrentActivity(), Utils.PERMISSION_CAMERA, callback);
     }
+
+    @ReactMethod
+    public void checkLocation(Callback callback) {
+        if (getCurrentActivity() == null) return;
+        boolean hasPermission = Utils.hasLocationPermission(getCurrentActivity());
+        if (hasPermission) {
+            callback.invoke(YES);
+        } else {
+            callback.invoke(NO);
+        }
+    }
+
+
+    @ReactMethod
+    public void openLocation(Callback callback) {
+        if (getCurrentActivity() == null) return;
+        Utils.requestPermission(getCurrentActivity(),Utils.PERMISSION_FINE_LOCATION,callback);
+    }
 }
