@@ -10,19 +10,21 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.facebook.react.bridge.Callback;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
+
 import java.util.List;
 
 public class Utils {
 
     public static final String PERMISSION_CAMERA = Manifest.permission.CAMERA;
-    public static final  String PERMISSION_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    public static final String  PERMISSION_ACROSS_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    public static final String PERMISSION_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    public static final String PERMISSION_ACROSS_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
 
 
     /**
@@ -42,7 +44,7 @@ public class Utils {
                         .onGranted(new Action<List<String>>() {
                             @Override
                             public void onAction(List<String> data) {
-                                if(callback != null){
+                                if (callback != null) {
                                     callback.invoke(1);
                                 }
                             }
@@ -50,7 +52,7 @@ public class Utils {
                         .onDenied(new Action<List<String>>() {
                             @Override
                             public void onAction(List<String> data) {
-                                if(callback != null){
+                                if (callback != null) {
                                     callback.invoke(2);
                                 }
                             }
@@ -156,11 +158,12 @@ public class Utils {
 
     /**
      * 检查是否有定位权限
+     *
      * @param activity
      * @return
      */
-    public static boolean hasLocationPermission(Activity activity){
-     return    checkPermission(activity,PERMISSION_FINE_LOCATION);
+    public static boolean hasLocationPermission(Activity activity) {
+        return checkPermission(activity, PERMISSION_FINE_LOCATION);
     }
 
 }
